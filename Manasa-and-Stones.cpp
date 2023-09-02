@@ -15,10 +15,6 @@ string rtrim(const string &);
  *  3. INTEGER b
  */
 
-vector<int> stones(int n, int a, int b) {
-
-}
-
 vector<int> stones(int n, int a, int b)
 {
     vector<int> result;
@@ -52,4 +48,47 @@ vector<int> stones1(int n, int a, int b)
     result.resize(std::distance(result.begin(), it));
     
     return result;
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string T_temp;
+    getline(cin, T_temp);
+
+    int T = stoi(ltrim(rtrim(T_temp)));
+
+    for (int T_itr = 0; T_itr < T; T_itr++) {
+        string n_temp;
+        getline(cin, n_temp);
+
+        int n = stoi(ltrim(rtrim(n_temp)));
+
+        string a_temp;
+        getline(cin, a_temp);
+
+        int a = stoi(ltrim(rtrim(a_temp)));
+
+        string b_temp;
+        getline(cin, b_temp);
+
+        int b = stoi(ltrim(rtrim(b_temp)));
+
+        vector<int> result = stones(n, a, b);
+
+        for (size_t i = 0; i < result.size(); i++) {
+            fout << result[i];
+
+            if (i != result.size() - 1) {
+                fout << " ";
+            }
+        }
+
+        fout << "\n";
+    }
+
+    fout.close();
+
+    return 0;
 }
