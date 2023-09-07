@@ -22,12 +22,12 @@ vector<int> stones(int n, int a, int b)
     for (int i = 0, j = n-1; i < n && j >= 0; ++i, --j)
     {   
         int item = a*i + b*j;
-        result.push_back(item);          
+        result.emplace_back(item);          
     }
     
     std::sort(result.begin(), result.end());
     auto it = std::unique(result.begin(), result.end());
-    result.erase(it, result.end());
+    result.resize(std::distance(result.begin(), it));
     
     return result;
 }
@@ -40,15 +40,16 @@ vector<int> stones1(int n, int a, int b)
     for (int i = 0, j = n-1; i < n && j >= 0; ++i, --j)
     {   
         int item = a*i + b*j;
-        result.emplace_back(item);          
+        result.push_back(item);          
     }
     
     std::sort(result.begin(), result.end());
     auto it = std::unique(result.begin(), result.end());
-    result.resize(std::distance(result.begin(), it));
+    result.erase(it, result.end());
     
     return result;
 }
+
 
 int main()
 {
@@ -91,4 +92,26 @@ int main()
     fout.close();
 
     return 0;
+}
+
+string ltrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        s.begin(),
+        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
+    );
+
+    return s;
+}
+
+string rtrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
+        s.end()
+    );
+
+    return s;
 }
