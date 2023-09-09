@@ -14,6 +14,33 @@ using System;
 
 class Result
 {
+
+    /*
+     * Complete the 'stones' function below.
+     *
+     * The function is expected to return an INTEGER_ARRAY.
+     * The function accepts following parameters:
+     *  1. INTEGER n
+     *  2. INTEGER a
+     *  3. INTEGER b
+     */
+
+    public static List<int> stones(int n, int a, int b)
+    {
+        List<int> result = new List<int>();
+
+        for (int i = 0, j = n - 1; i < n && j >= 0; ++i, --j)
+        {
+            int item = a * i + b * j;
+            result.Add(item);
+        }
+
+        result.Sort();
+        result = result.Distinct().ToList();
+
+        return result;
+    }
+
 }
 
 class Solution
