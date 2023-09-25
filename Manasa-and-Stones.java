@@ -10,6 +10,35 @@ import java.util.stream.*;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
+class Result {
+
+    /*
+     * Complete the 'stones' function below.
+     *
+     * The function is expected to return an INTEGER_ARRAY.
+     * The function accepts following parameters:
+     *  1. INTEGER n
+     *  2. INTEGER a
+     *  3. INTEGER b
+     */
+
+    public static List<Integer> stones(int n, int a, int b) {
+        List<Integer> result = new ArrayList<>();
+
+        for (int i = 0, j = n - 1; i < n && j >= 0; ++i, --j) {
+            int item = a * i + b * j;
+            result.add(item);
+        }
+
+        Set<Integer> resultSet = new HashSet<>(result);
+        
+        List<Integer> sortedResult = new ArrayList<>(resultSet);
+        Collections.sort(sortedResult);
+
+        return sortedResult;
+    }
+}
+
 public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
